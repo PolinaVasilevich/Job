@@ -1,0 +1,42 @@
+DocumentTypeName = 'ПКО'                                                    
+DocumentKindCode = 'Д000069'        
+OpenDialog = CreateOpenDialog()
+OpenDialog.MultiSelect = False
+    if OpenDialog.Execute
+    File = OpenDialog.Result
+    ext = Copy(ExtractFileExt(File);2)
+    //получим приложение-редактор
+    PRR = Createreference('ПРР')                                          
+    PRR.Open
+        if PRR.locate('ТипПриложения';UpperCase(ext))
+             DocumentEditorCode = PRR.Requisites('Код').value 
+          else
+             Raise(CreateException('';'Приложения-редактора для данного формата нет!';ecWarning)) 
+          endif 
+    PRR.Close()
+            
+        ASourceFileName = ExtractFileName(File)
+        CreatedDocument = EDocuments.CreateNewFromFile(DocumentTypeName; DocumentKindCode; DocumentEditorCode; File; False)
+        CreatedDocument.Requisites('Дополнение3').Value = "Отпуск"
+        //перевести документ в состояние "Действующий"
+        CreatedDocument.SetLifeCycleStageByName('Active')                         
+        CreatedDocument.Save
+          //привязать документ к записи  справочника
+          //EDocuments.BindTo(Object.Info; CreatedDocument.Info)
+        ИДДок = CreatedDocument.ID
+        MessageBox(INFORMATION_CAPTION; /*"Документ добавлен!"*/ ИДДок; 'Ok'; 'Ok')                      
+    else
+    Exit()
+    endif 
+
+//создать задачу   
+Task = Tasks.CreateNew()     
+DocInfo = EDocuments.ObjectInfo(ИдДок)
+AttList = Task.GetAttachments(False)
+Attlist.Add(DocInfo)
+Task.LoadStandardRoute('AddOrg')
+Task.SetupStandardRoute(true)
+Task.Start()
+MessageBox(INFORMATION_CAPTION; "Задача отправлена!"; 'Ok'; 'Ok')  
+        
+         
