@@ -1,0 +1,9 @@
+//if VarIsNull(Object.LongString5)
+    Object.LongString5 = Sender.DisplayText
+// endif
+
+TIN = Sender.Value
+  if Assigned(TIN) 
+    Object.Город = GetRequisiteValueAsString('ОРГ'; TIN; 'Город'; FALSE;TRUE)
+  endif
+  

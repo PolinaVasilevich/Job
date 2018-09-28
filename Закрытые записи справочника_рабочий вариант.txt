@@ -1,0 +1,7 @@
+UserName = Application.Connection.UserName
+if (UserName <<>>  'Administrator')
+  WhereStr = Format("%s.%s = '%s'"; ArrayOf(Object.TableName; Object.Requisites('Состояние').SQLFieldName; "Д"))
+  СпрИзмНабДан(;; WhereStr) 
+endif
+           
+              
