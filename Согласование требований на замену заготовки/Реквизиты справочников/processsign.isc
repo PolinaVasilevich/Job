@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="windows-1251" standalone="yes"?>
+<Components Configuration="true">
+  <RefRequisites>
+    <RefRequisite KeyValue="ProcessSign" DisplayValue="Процесс" RefID="-1"/>
+  </RefRequisites>
+</Components>

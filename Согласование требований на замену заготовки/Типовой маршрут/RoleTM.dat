@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="windows-1251" standalone="no"?>
+<ROOT Version="2.0"><RecordRef Vid="РОЛ" Kod="Д000043" Name="ОтветственныйДелопроизводительРегСЗ"><Requisite Name="Состояние" Type="Priznak" Value="Действующая"/><Requisite Name="ISBRoleType" Type="Priznak" Value="Вычисляемая"/><Requisite Name="ISBEvent" Type="Text" Value="RoleTM_РОЛ_Д000043_ISBEvent.IMG"/><Requisite Name="ISBDescription" Type="String" Value="МЗКТ. Делопроизводитель подразделения, регистрирующий служебные записки"/><Requisite Name="ДаНет" Type="Priznak" Value="Нет"/></RecordRef></ROOT>
