@@ -1,0 +1,19 @@
+SendDocumentByTask2тест2потом2удалить(Object.Info)
+
+  Task = Tasks.CreateNew()
+  if not VarIsNull(DocumentInfo) 
+    AttList = Task.GetAttachments(FALSE)
+    AttList.Add(DocumentInfo)
+    Task.Subject = DocumentInfo.Name
+  endif  
+  //Task.LoadStandardRoute("СЗ2")
+   //Task.SetupStandardRoute(false)
+    
+    Task.LoadStandardRoute('СЗ2')
+    Task.SetupStandardRoute(TRUE)
+ 
+  Task.Form.Show()
+
+
+
+Справочник Типы карточек документов

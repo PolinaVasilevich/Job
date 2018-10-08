@@ -1,0 +1,10 @@
+CurrentUserName = Application.Connection.UserName
+CurrentUser = ServiceFactory.GetUserByName(CurrentUserName) // текущий пользователь   
+AllUsersGroup = ServiceFactory.GetGroupByName("Administrators") // группа
+GroupMembers = ServiceFactory.GetGroupMembers(AllUsersGroup)
+if not GroupMembers.Find(CurrentUser)
+  WhereStr = Format("%s.%s = '%s'"; ArrayOf(Object.TableName; Object.Requisites('Состояние').SQLFieldName; "Д"))
+  СпрИзмНабДан(;; WhereStr) 
+endif
+           
+              

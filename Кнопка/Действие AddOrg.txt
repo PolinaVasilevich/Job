@@ -1,0 +1,82 @@
+ResButton = ""
+
+НазваниеОрганизации = ""
+ИНН                 = ""
+ПочтовыйАдрес = ""
+робим               = true
+
+Buttons = "ОК|Отмена|Помощь"
+
+
+Control = Object.Form.Controls.FindControl("InplaceHint")
+Control.Visible = TRUE
+Control.Text = "Текст подсказки"
+
+while робим
+  // Покажем диалог, о необходимости ввода Названия организации, ИНН, Телефона
+  
+!Значение = InputDialogEx('*Название организации|*ИНН/УНП|*Почтовый адрес'; НазваниеОрганизации & '|' & ИНН  & '|' & ПочтовыйАдрес; 'String:150|String:32|String:150'; 'Ввод реквизитов организации';;;;;;; '123'/*;;;;;;;; true*/) 
+ 
+
+  if SubString(!Значение; '|'; 4) == 'Отменить'
+     Exit()
+  endif
+  
+
+  // Проверим что бы обязательно был ИНН и название организации
+    НазваниеОрганизации = SubString(!Значение; '|'; 1)
+    ИНН = SubString(!Значение; '|'; 2)
+    ПочтовыйАдрес  = SubString(!Значение; '|'; 3)
+    
+    
+    if Length(НазваниеОрганизации) == 0 or Length(ИНН) == 0 or Length(ПочтовыйАдрес) == 0
+     //ShowMessage("Введено пустое значение ИНН!")
+      MessageBox(ATTENTION_CAPTION; "Пожалуйста, введите все реквизиты организации!"; 'Ok'; 'Ok')
+    else
+        робим = false
+        Текст = "Название организации: " & НазваниеОрганизации & CR & "ИНН: " & ИНН & CR & "Почтовый адрес: "& ПочтовыйАдрес
+    endif 
+ endwhile  
+  
+// Сформируем задание Системному администратору
+  if MessageBox(CONFIRMATION_CAPTION; "Отправить данные на добавление в Directum?" & CR & CR & Текст; 'Да|Нет'; 'Да') == 'Да'
+   Task = Tasks.CreateNew()
+   Task.LoadStandardRoute("AddOrg")
+   Task.SetupStandardRoute(false)
+   
+   /*
+   AttachmentList = Task.GetAttachments(false)
+   AttachmentList.Add(Object.Info)
+   */
+   Task.ActiveText = Текст
+   try
+      // Отправить задачу
+      Task.Start
+       /*
+      // Добавим информацию о задании в таблицу заданий
+      AddresseDS = Object.DetailDataSet(12)
+      AddresseDS.Append  
+      AddresseDS.Requisites('ДатаОтправки').AsString = Сейчас()
+      AddresseDS.Requisites('IDЗадания').AsString = Task.ID
+      AddresseDS.Requisites('ТемаЗадания').AsString = Task.Title
+      AddresseDS.CloseRecord 
+          */
+      // Сохраним карточку      
+      Form = Object.Form
+      Actions = Form.Actions        
+      Actions.FindAction('SaveRecordAction').Execute
+      
+      ShowMessage('Задача отправлена администатору.'& cr & tab &'После обработки Вашего запроса, организация будет добавлена в справочник.')
+   except
+      // Если отправить не удалось, то сгенерировать исключение
+        Exception = GetLastException()
+        Raise(CreateException('EDIRInvalidUserAction'; 
+                
+      // 'Не удалось отправить задачу.' 
+        LoadString('DIR149EAF85_1F8E_4DF8_A2C6_D1F4573CF4E4'; 'RM') & CR & Exception.Message & CR & 
+                
+      // 'Обратитесь к администратору системы.'
+        LoadString('DIR6A9D32E2_4D4B_484C_AFA4_1708CCFEB125'; 'COMMON'); ecWarning))
+    endexcept
+  endif
+
