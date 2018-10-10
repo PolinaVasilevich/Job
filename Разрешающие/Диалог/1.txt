@@ -1,0 +1,18 @@
+Выбранные явно
+	Диалоги
+		Доработка_для_п38
+Выбранные автоматически
+	Реквизиты диалогов
+		AccessRigthsType
+		Affair
+		Prefix
+		RegistrationPlace
+		ShortString
+		User
+		User2
+		User3
+		UserT
+		UserT2
+		UserT3
+	Модули
+		Канцелярия

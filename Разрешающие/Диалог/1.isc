@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="windows-1251" standalone="yes"?>
+<Components Configuration="true">
+  <Dialogs>
+    <Dialog KeyValue="Доработка_для_п38" DisplayValue="Параметры маршрута" RefID="-1"/>
+  </Dialogs>
+</Components>
