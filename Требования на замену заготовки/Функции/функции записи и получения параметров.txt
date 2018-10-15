@@ -1,0 +1,7 @@
+Выбранные явно
+	Функции ISBL
+		MZKTGetUserProcessSettings_доработка
+		MZKTSetUserProcessSettings_доработка
+Выбранные автоматически
+	Группы функций
+		Модуль "Канцелярия"

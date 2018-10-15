@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1251" standalone="yes"?>
+<Components Configuration="true">
+  <Functions>
+    <Function KeyValue="MZKTGetUserProcessSettings_доработка" DisplayValue="MZKTGetUserProcessSettings_доработка" RefID="-1"/>
+    <Function KeyValue="MZKTSetUserProcessSettings_доработка" DisplayValue="MZKTSetUserProcessSettings_доработка" RefID="-1"/>
+  </Functions>
+</Components>

@@ -1,0 +1,8 @@
+Выбранные явно
+	Реквизиты справочников
+		ProcessSignTest
+Выбранные автоматически
+	Словарь локализации
+		COMMON.DIRPICK_57FF9251_EC7F_4A7B_A81B_22D3BBD8C4E4
+		RM.PICK_31
+		RM.PICK_32
