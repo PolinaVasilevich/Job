@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="windows-1251" standalone="yes"?>
+<Components Configuration="true">
+  <RefTypes>
+    <RefType KeyValue="ОРГ" DisplayValue="Организации" RefID="-1"/>
+  </RefTypes>
+</Components>
