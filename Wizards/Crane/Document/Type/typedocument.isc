@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="windows-1251" standalone="yes"?>
+<Components Configuration="true">
+  <EDCardTypes>
+    <EDCardType KeyValue="RequestCrane" DisplayValue="Заявки на выделение грузоподъемных кранов" RefID="-1"/>
+  </EDCardTypes>
+</Components>
